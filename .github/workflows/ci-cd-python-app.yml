@@ -142,10 +142,9 @@ jobs:
       run: |
         kubectl apply -k k8s/ 
    
-    # DO SOME CHECKS HERE BEFORE COMMIT
-    #- name: Deploy updated Kubernetes resources
-    #  run: |
-    #    kubectl apply -k k8s/
+    - name: Wait for rollout
+      run: |
+        kubectl -n "${{ env.NEW_NAMESPACE }}" rollout status deploy --timeout=120s
 
     # REMOVE OLD DEPLOYMENT!!
     - name: Remove old namespace
