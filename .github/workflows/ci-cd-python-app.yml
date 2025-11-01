@@ -145,7 +145,7 @@ jobs:
         env:
           NEW_NAMESPACE: ${{ env.NEW_NAMESPACE }}
         run: |
-          kubectl -n "$NEW_NAMESPACE" rollout status deployment/python-app --timeout=120s
+          kubectl -n "$NEW_NAMESPACE" rollout status deployment/hello-gitops --timeout=120s
   
       - name: Remove old namespace (blue/green cleanup)
         env:
