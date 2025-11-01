@@ -161,7 +161,12 @@ jobs:
           git config --local user.name "GitHub Action"
           git commit -am "Bump docker tag" || echo "No changes to commit"
   
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pull (rebase) and push
+        run: |
+          set -euo pipefail
+          # Make sure we're on main
+          git checkout main
+          # Bring remote changes in first to avoid non-fast-forward error
+          git pull --rebase origin main
+          # Safer than --force: will fail if remote changed since we rebased
+          git push --force-with-lease origin HEAD:main
