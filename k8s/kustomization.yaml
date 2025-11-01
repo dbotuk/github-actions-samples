@@ -8,4 +8,4 @@ namespace: hello-gitops
 images:
 - name: hello-gitops
   newName: dbotuk/hello-gitops
-  newTag: 7274231fe2a5797caf74fccdc4232a9d009df106
+  newTag: cae8365fa6ee2db0fe42f13039d26bfe6ba18c79
